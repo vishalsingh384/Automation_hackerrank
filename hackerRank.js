@@ -1,14 +1,14 @@
 const puppeteer=require("puppeteer");
 
-let email="vishalsing384@gmail.com";
-let password="Hacked@123";
-
+let email=require("./secret");
+// console.log(email.emailId());
+let password=require("./secret");
 let cTab;
 let browserOpenPromise=puppeteer.launch({
     headless:false,
     defaultViewport:null,
     args:["--start-maximized"],
-    
+
     //by default, ye Chromium me khulega
     //Agar apne Chrome Browser me kholna hai to, follow below steps;-
     //type this in browser->chrome:version
@@ -32,12 +32,12 @@ browserOpenPromise.then(function(browser){
 })
 .then(function(){
     console.log("hackerrank opened");
-    let emailWillBeTypedPromise=cTab.type("input[name='username']", email);
+    let emailWillBeTypedPromise=cTab.type("input[name='username']", email.emailId());
     return emailWillBeTypedPromise;
 })
 .then(function(){
     console.log("email is typed");
-    let passwordWillBeTypedPromise = cTab.type("input[type='password']", password);
+    let passwordWillBeTypedPromise = cTab.type("input[type='password']", password.passWord());
     return passwordWillBeTypedPromise;
 })
 .then(function(){
